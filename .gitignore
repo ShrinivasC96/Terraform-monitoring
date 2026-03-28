@@ -1,0 +1,52 @@
+# Create the file
+cat > .gitignore << 'EOF'
+# Terraform state files — NEVER push these, they contain sensitive data
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Terraform plan output — contains your AWS account details
+tfplan
+*.tfplan
+
+# Terraform working directory — downloaded providers (huge files, 100MB+)
+.terraform/
+.terraform.lock.hcl
+
+# Terraform crash logs
+crash.log
+crash.*.log
+
+# Variable files that may contain secrets
+*.tfvars
+*.tfvars.json
+!example.tfvars
+
+# AWS credentials — never push these
+.aws/
+credentials
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# SSH keys
+*.pem
+*.key
+
+# OS generated files
+.DS_Store
+.DS_Store?
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Jenkins workspace files
+workspace/
+EOF
