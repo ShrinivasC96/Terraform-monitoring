@@ -151,6 +151,11 @@ pipeline {
                           --region $AWS_DEFAULT_REGION \
                           --alias my-eks-cluster
 
+                        sudo mkdir -p /var/lib/jenkins/.kube
+                        sudo cp ~/.kube/config /var/lib/jenkins/.kube/config
+                        sudo chown -R jenkins:jenkins /var/lib/jenkins/.kube/
+                        sudo chmod 600 /var/lib/jenkins/.kube/config
+
                         echo "Waiting 30s for nodes to be ready..."
                         sleep 30
                         kubectl get nodes
